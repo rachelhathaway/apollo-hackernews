@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import Link from './index';
+import Link from './Link';
 
 window.localStorage = {
   getItem: jest.fn(),
@@ -13,7 +13,8 @@ function setup(propsOverrides = {}) {
     description: 'Google',
     votes: 2,
     postedBy: 'Leona',
-    createdAt: Date.now()
+    createdAt: Date.now(),
+    createVoteMutation: jest.fn()
   }, propsOverrides);
   const wrapper = shallow(<Link {...props} />);
   return {

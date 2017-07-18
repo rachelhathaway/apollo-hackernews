@@ -5,6 +5,11 @@ import LinkForm from './LinkForm';
 
 jest.mock('../FormField');
 
+window.localStorage = {
+  getItem: jest.fn(() => 1),
+  setItem: jest.fn()
+};
+
 function setup(propsOverrides = {}) {
   const props = Object.assign({}, {
     createLinkMutation: jest.fn(),
@@ -51,7 +56,9 @@ describe('LinkForm', () => {
     const state = { url: 'http://google.com', description: 'google' };
     wrapper.setState(state);
     button.simulate('click');
-    expect(props.createLinkMutation).toHaveBeenCalledWith({ variables: state });
+    expect(props.createLinkMutation).toHaveBeenCalledWith({ variables: Object.assign({}, state, {
+      postedById: 1
+    })});
   });
 
   it('should redirect to the root route on button click', () => {

@@ -21,11 +21,13 @@ class LinkForm extends Component {
         <div className="flex flex-column mt3">
           <FormField
             value={description}
+            required={true}
             onChange={e => this.setState({ description: e.target.value })}
             placeholder="Add a link description"
           />
           <FormField
             value={url}
+            required={true}
             onChange={e => this.setState({ url: e.target.value })}
             placeholder="Add a link url"
           />

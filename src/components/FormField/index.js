@@ -1,28 +1,24 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function FormField({ onChange, placeholder, type, value, name }) {
+function FormField(props) {
+  const validProps = Object.keys(props).reduce((p, key) => {
+    if (props[key]) {
+      return Object.assign({}, p, { [key]: props[key] });
+    }
+    return p;
+  }, {});
   return (
-    <input
-      className="mb2"
-      name={name}
-      value={value}
-      onChange={onChange}
-      type={type}
-      placeholder={placeholder}
-    />
+    <input className="mb2" {...validProps} />
   );
 }
 
 FormField.propTypes = {
-  name: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string.isRequired,
-  type: PropTypes.string,
-  value: PropTypes.string
+  onChange: PropTypes.func.isRequired
 };
 
 FormField.defaultProps = {
+  required: false,
   type: 'text',
   value: ''
 };
