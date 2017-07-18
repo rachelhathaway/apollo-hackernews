@@ -1,6 +1,9 @@
 import { shallow } from 'enzyme';
 import React from 'react';
+import FormField from '../FormField';
 import LinkForm from './LinkForm';
+
+jest.mock('../FormField');
 
 function setup(propsOverrides = {}) {
   const props = Object.assign({}, {
@@ -13,7 +16,7 @@ function setup(propsOverrides = {}) {
   return {
     wrapper,
     props,
-    inputs: wrapper.find('input'),
+    inputs: wrapper.find(FormField),
     button: wrapper.find('button')
   };
 }
@@ -29,7 +32,7 @@ describe('LinkForm', () => {
     expect(inputs.length).toBe(2);
   });
 
-  it('should bind the component state to the input values', () => {
+  it('should bind the input values to the component state', () => {
     const { wrapper, inputs } = setup();
     expect(wrapper.state('description')).toEqual('');
     expect(wrapper.state('url')).toEqual('');

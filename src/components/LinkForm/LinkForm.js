@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import FormField from '../FormField';
 
 class LinkForm extends Component {
 
@@ -17,18 +18,14 @@ class LinkForm extends Component {
     return (
       <div>
         <div className="flex flex-column mt3">
-          <input
-            className="mb2"
+          <FormField
             value={description}
             onChange={e => this.setState({ description: e.target.value })}
-            type="text"
             placeholder="Add a link description"
           />
-          <input
-            className="mb2"
+          <FormField
             value={url}
             onChange={e => this.setState({ url: e.target.value })}
-            type="text"
             placeholder="Add a link url"
           />
           <button className="button" onClick={this.handleClick}>Submit</button>
