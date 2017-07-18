@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { GC_USER_ID } from '../../constants'
 import FormField from '../FormField';
 
 class LinkForm extends Component {
@@ -35,8 +36,14 @@ class LinkForm extends Component {
   }
 
   async handleClick(e) {
-    this.props.createLinkMutation({ variables: this.state });
-    this.props.history.push('/');
+    const { createLinkMutation, history } = this.props;
+    const postedById = localStorage.getItem(GC_USER_ID);
+    if (!postedById) {
+      return;
+    }
+    const { description, url } = this.state;
+    createLinkMutation({ variables: { postedById, description, url } });
+    history.push('/');
   }
 
 }
