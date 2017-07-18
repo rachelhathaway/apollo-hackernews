@@ -10,7 +10,7 @@ class Link extends Component {
     );
   }
 
-  _voteForLink() {
+  async voteForLink() {
 
   }
 

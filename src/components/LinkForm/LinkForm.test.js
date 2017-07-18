@@ -4,7 +4,7 @@ import LinkForm from './LinkForm';
 
 function setup(propsOverrides = {}) {
   const props = Object.assign({}, {
-    onClick: jest.fn()
+    createLinkMutation: jest.fn()
   }, propsOverrides);
   const wrapper = shallow(<LinkForm {...props} />);
   return {
@@ -40,9 +40,11 @@ describe('Link', () => {
     expect(button.length).toBe(1);
   });
 
-  it('should call the onClick prop when the button is clicked', () => {
-    const { button, props } = setup();
+  it('should call the createLinkMutation prop with the correct args', () => {
+    const { wrapper, button, props } = setup();
+    const state = { url: 'http://google.com', description: 'google' };
+    wrapper.setState(state);
     button.simulate('click');
-    expect(props.onClick).toHaveBeenCalled();
+    expect(props.createLinkMutation).toHaveBeenCalledWith({ variables: state });
   });
 });

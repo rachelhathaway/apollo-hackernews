@@ -37,14 +37,14 @@ class LinkForm extends Component {
     )
   }
 
-  handleClick(e) {
-    this.props.onClick();
+  async handleClick(e) {
+    this.props.createLinkMutation({ variables: this.state });
   }
 
 }
 
 LinkForm.propTypes = {
-  onClick: PropTypes.func.isRequired
+  createLinkMutation: PropTypes.func.isRequired
 };
 
 export default LinkForm;
