@@ -12,5 +12,5 @@ const ALL_LINKS_QUERY = gql`
 `;
 
 export default function AllLinksQueryWrapper(Component) {
-  return graphql(ALL_LINKS_QUERY, { name: 'query' })(Component);
+  return graphql(ALL_LINKS_QUERY, { name: 'allLinksQuery' })(Component);
 }

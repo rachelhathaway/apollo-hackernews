@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 class Link extends Component {
 
   render() {
-    const { link } = this.props;
+    const { description, url } = this.props;
     return (
-      <a href={link.url}>{link.description}</a>
+      <a href={url}>{description}</a>
     );
   }
 
@@ -17,10 +17,8 @@ class Link extends Component {
 }
 
 Link.propTypes = {
-  link: PropTypes.shape({
-    description: PropTypes.string,
-    url: PropTypes.string
-  }).isRequired
+  description: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired
 };
 
 export default Link;
