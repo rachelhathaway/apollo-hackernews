@@ -1,11 +1,14 @@
+import { shallow } from 'enzyme';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import App from './App';
 
+jest.mock('react-router-dom');
 jest.mock('./components/LinkForm');
 jest.mock('./components/LinkList');
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+describe('App', () => {
+  it('should render', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.exists()).toBe(true);
+  });
 });

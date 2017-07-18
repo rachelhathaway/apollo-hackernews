@@ -4,7 +4,10 @@ import LinkForm from './LinkForm';
 
 function setup(propsOverrides = {}) {
   const props = Object.assign({}, {
-    createLinkMutation: jest.fn()
+    createLinkMutation: jest.fn(),
+    history: {
+      push: jest.fn()
+    }
   }, propsOverrides);
   const wrapper = shallow(<LinkForm {...props} />);
   return {
@@ -40,11 +43,17 @@ describe('LinkForm', () => {
     expect(button.length).toBe(1);
   });
 
-  it('should call the createLinkMutation prop with the correct args', () => {
+  it('should call the createLinkMutation prop with the correct args on button click', () => {
     const { wrapper, button, props } = setup();
     const state = { url: 'http://google.com', description: 'google' };
     wrapper.setState(state);
     button.simulate('click');
     expect(props.createLinkMutation).toHaveBeenCalledWith({ variables: state });
+  });
+
+  it('should redirect to the root route on button click', () => {
+    const { wrapper, button, props } = setup();
+    button.simulate('click');
+    expect(props.history.push).toHaveBeenCalledWith('/');
   });
 });

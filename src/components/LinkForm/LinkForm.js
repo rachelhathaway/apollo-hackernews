@@ -39,12 +39,14 @@ class LinkForm extends Component {
 
   async handleClick(e) {
     this.props.createLinkMutation({ variables: this.state });
+    this.props.history.push('/');
   }
 
 }
 
 LinkForm.propTypes = {
-  createLinkMutation: PropTypes.func.isRequired
+  createLinkMutation: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 export default LinkForm;

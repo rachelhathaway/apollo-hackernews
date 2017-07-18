@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import LinkForm from './components/LinkForm';
 import LinkList from './components/LinkList';
@@ -10,8 +11,12 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <LinkForm />
-        <LinkList />
+        <div className="ph3 pv1 background-gray">
+          <Switch>
+            <Route exact path="/" component={LinkList} />
+            <Route exact path="/create" component={LinkForm} />
+          </Switch>
+        </div>
       </div>
     );
   }

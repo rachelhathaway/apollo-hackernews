@@ -1,5 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import LinkForm from './LinkForm';
 import { CreateLinkMutationWrapper } from '../../queries/Link';
 
-export default CreateLinkMutationWrapper(LinkForm);
+function WrappedLinkForm(props) {
+  return <LinkForm {...props} />;
+}
+
+export default CreateLinkMutationWrapper(WrappedLinkForm);

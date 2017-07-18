@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import LinkList from './LinkList';
 import { AllLinksQueryWrapper } from '../../queries/Link';
 
