@@ -15,7 +15,7 @@ function setup(propsOverrides = {}) {
   };
 }
 
-describe('Link', () => {
+describe('LinkForm', () => {
   it('should render', () => {
     const { wrapper } = setup();
     expect(wrapper.exists()).toBe(true);

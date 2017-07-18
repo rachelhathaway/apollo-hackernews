@@ -31,7 +31,7 @@ class LinkForm extends Component {
             type="text"
             placeholder="Add a link url"
           />
-          <button onClick={this.handleClick}>Submit</button>
+          <button className="button" onClick={this.handleClick}>Submit</button>
         </div>
       </div>
     )
