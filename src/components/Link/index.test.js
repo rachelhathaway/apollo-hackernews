@@ -2,10 +2,18 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import Link from './index';
 
+window.localStorage = {
+  getItem: jest.fn(),
+  setItem: jest.fn()
+};
+
 function setup(propsOverrides = {}) {
   const props = Object.assign({}, {
     url: 'http://google.com',
-    description: 'Google'
+    description: 'Google',
+    votes: 2,
+    postedBy: 'Leona',
+    createdAt: Date.now()
   }, propsOverrides);
   const wrapper = shallow(<Link {...props} />);
   return {
@@ -22,11 +30,11 @@ describe('Link', () => {
 
   it('should use the url prop for the href attribute', () => {
     const { wrapper, props } = setup();
-    expect(wrapper.prop('href')).toEqual(props.url);
+    expect(wrapper.find('a').prop('href')).toEqual(props.url);
   });
 
   it('should use the description prop for the link text', () => {
     const { wrapper, props } = setup();
-    expect(wrapper.text()).toEqual(props.description);
+    expect(wrapper.find('a').text()).toEqual(props.description);
   });
 });

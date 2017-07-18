@@ -11,9 +11,9 @@ class LinkList extends Component {
         {allLinksQuery.loading && <div>Loading...</div>}
         {allLinksQuery.error && <div>Error...</div>}
         {allLinksQuery.allLinks &&
-          <ul>
+          <ol>
             {allLinksQuery.allLinks.map(link => <li key={link.id}><Link {...link} /></li>)}
-          </ul>
+          </ol>
         }
       </div>
     );
