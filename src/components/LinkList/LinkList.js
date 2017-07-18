@@ -1,8 +1,25 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { SUBSCRIBE_QUERY } from '../../queries/Link';
 import Link from '../Link';
 
 class LinkList extends Component {
+
+  componentDidMount() {
+    this.props.allLinksQuery.subscribeToMore({
+      document: SUBSCRIBE_QUERY,
+      updateQuery: (previous, { subscriptionData }) => {
+        const newAllLinks = [
+          subscriptionData.data.Link.node,
+          ...previous.allLinks
+        ];
+        return {
+          ...previous,
+          allLinks: newAllLinks
+        };
+      }
+    })
+  }
 
   render() {
     const { allLinksQuery } = this.props;
